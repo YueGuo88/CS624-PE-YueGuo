@@ -1,0 +1,6 @@
+Input
+The input for this "HelloWorld" mobile app is predefined text data that includes the user's name, degree program, and school. These values are hard-coded directly into the app's source code.
+Process
+The app utilizes the React Native framework, specifically incorporating five React Native components: one View component as the main container and three Text components to display the user's name, degree program, and school. Styling is applied using the StyleSheet component to set the background color to yellow and define the text's appearance (e.g., font size and margin). The StyleSheet ensures consistent styling across devices.
+Output
+The app's output is a simple mobile interface displaying the provided text in a yellow background color, as specified by the styling. The Text components render the user's name, degree program, and school accordingly. When the app is run on a mobile device or emulator, it will visually present the information in a clear and readable format, providing a basic "HelloWorld" greeting with personalized details based on the predefined input.
