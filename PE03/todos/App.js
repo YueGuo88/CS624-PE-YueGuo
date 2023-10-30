@@ -3,34 +3,15 @@ import { View, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-nati
 import Heading from './Heading';
 import Input from './Input';
 
+// Custom Button component with styles
+const CustomButton = ({ onPress, text, color, backgroundColor }) => (
+  <TouchableOpacity style={[styles.customButton, { backgroundColor }]} onPress={onPress}>
+    <Text style={[styles.buttonText, { color }]}>{text}</Text>
+  </TouchableOpacity>
+);
+
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      inputValue: '',
-      todos: [],
-      type: 'All',
-    };
-  }
-
-  // Handle changes in the input field
-  inputChange(inputValue) {
-    this.setState({ inputValue });
-  }
-
-  // Add a new to-do item to the list
-  addTodo() {
-    if (this.state.inputValue) {
-      const newTodo = {
-        title: this.state.inputValue,
-        completed: false,
-      };
-      this.setState((prevState) => ({
-        inputValue: '',
-        todos: [...prevState.todos, newTodo],
-      }));
-    }
-  }
+  // ... (constructor and other methods)
 
   // Render the app UI
   render() {
@@ -41,15 +22,20 @@ class App extends Component {
             <Heading />
             <Input inputValue={this.state.inputValue} inputChange={(text) => this.inputChange(text)} />
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.addButton} onPress={() => this.addTodo()}>
-                <Text style={styles.buttonText}>Submit</Text>
-              </TouchableOpacity>
+              <CustomButton onPress={() => this.addTodo()} text="Submit" color="white" backgroundColor="#FFC0CB" />
             </View>
             <View style={styles.centeredTodoList}>
               {this.state.todos.map((todo, index) => (
-                <TouchableOpacity key={index}>
-                  <Text>{todo.title}</Text>
-                </TouchableOpacity>
+                <View key={index} style={styles.listItem}>
+                  <Text style={styles.listTitle}>{todo.title}</Text>
+                  <CustomButton
+                    onPress={() => this.toggleTodo(index)}
+                    text={todo.done ? 'Undo' : 'Done'}
+                    color="white"
+                    backgroundColor={todo.done ? '#4CAF50' : '#F0F0F0'}
+                  />
+                  <CustomButton onPress={() => this.deleteTodo(index)} text="Delete" color="white" backgroundColor="#FF5733" />
+                </View>
               ))}
             </View>
           </View>
@@ -60,33 +46,29 @@ class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-  },
-  content: {
-    flex: 1,
-    paddingTop: 60,
-  },
-  centeredContainer: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  addButton: {
-    backgroundColor: '#FFC0CB',
-    marginTop: 10,
+  // ... (existing styles)
+
+  customButton: {
     padding: 10,
+    margin: 5,
+    borderRadius: 5,
     alignItems: 'center',
   },
   buttonText: {
-    color: 'white',
     textAlign: 'center',
   },
-  centeredTodoList: {
+  listItem: {
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+  },
+  listTitle: {
+    flex: 1,
+    fontSize: 16,
   },
 });
 
