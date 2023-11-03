@@ -1,6 +1,6 @@
 // Listing 4.10 Incorporating border properties into the Profile Card
 import React, { Component } from 'react';
-import { Image, StyleSheet, View} from 'react-native';
+import { Image, StyleSheet, View, Text} from 'react-native';
 
 /*
     https://icons8.com/icons/set/user
@@ -14,6 +14,11 @@ export default class App extends Component  {
                         <Image style={styles.cardImage}        
                                source={require('./assets/user.png')}/>
                     </View>
+            <Text style={styles.nameText}>Carmen Guo</Text>
+                <Text style={styles.roleText}>App Developer</Text>
+                   <Text style={styles.descriptionText}>
+                       Carmen is a good fashion-related app developer, aiming to give people the best shopping experience.
+                    </Text>
                 </View>
             </View>
         );
@@ -51,7 +56,27 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cardImage: {
-        width: 80,
-        height: 80
-    }
+        width: 88,
+        height: 88,
+    },
+    nameText: {
+        color: 'white',
+        fontWeight: 'bold',
+        marginTop: 30, // Adjust the top margin to control spacing.
+        fontSize: 20,
+      },
+      roleText: {
+        color: 'black',
+        textDecorationLine: 'underline', // Add underline to the text.
+        marginTop: 10,
+        fontSize: 17,
+      },
+      descriptionText: {
+        color: 'black',
+        marginTop: 30, // Adjust the top margin to control spacing.
+        textAlign: 'left'&'right', // Center-align the text.
+        marginLeft: 15,
+        marginRight: 15,
+      },
+
 });
