@@ -56,8 +56,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     cardImage: {
-        width: 88,
-        height: 88,
+        width: 120,
+        height: 120,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     nameText: {
         color: 'white',
